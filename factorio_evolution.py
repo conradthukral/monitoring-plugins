@@ -19,7 +19,8 @@ def parse_evolution(server_output):
     }
 
 def get_server_output():
-    process = subprocess.run(['sudo', '/opt/factorio-init/factorio', 'cmd -o /evolution'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, check=False)
+    command = 'sudo /opt/factorio-init/factorio cmd -o /evolution'.split(' ')
+    process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, check=False)
     if process.returncode != 0:
         raise Exception(f"Error reading factorio evolution - error code {process.returncode}, stderr: '{process.stderr.strip()}', stdout: '{process.stdout.strip()}'")
     return process.stdout

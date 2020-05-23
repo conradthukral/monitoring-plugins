@@ -28,7 +28,8 @@ def metrics(players):
     return metrics
 
 def get_server_output():
-    process = subprocess.run(['sudo', '/opt/factorio-init/factorio', 'cmd -o /players'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, check=False)
+    command = 'sudo /opt/factorio-init/factorio cmd -o /players'.split(' ')
+    process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True, check=False)
     if process.returncode != 0:
         raise Exception(f"Error reading factorio users - error code {process.returncode}, stderr: '{process.stderr.strip()}', stdout: '{process.stdout.strip()}'")
     return process.stdout
