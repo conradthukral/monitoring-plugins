@@ -33,7 +33,7 @@ import helpers
 
 
 def get_stats_output():
-    return helpers.run_subprocess('rspamd stats', 'sudo rspamc stat')
+    return helpers.run_subprocess('rspamd stats', 'rspamc stat')
 
 
 def parse_actions(stats_output):
